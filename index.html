@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffd9e8">
+  <title>Happy Birthday, Jihan! 💗</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <audio id="birthdayMusic" src="lagu.mp3" loop preload="auto"></audio>
+  <button id="musicButton" class="music-button" type="button" onclick="toggleMusic()">🎵 Play Music</button>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+  <main>
+    <section class="screen active" id="welcome">
+      <div class="envelope bounce">💌</div>
+      <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+      <h1>Hey, Jihan! 💗</h1>
+      <p class="intro">Alif punya kejutan kecil buat kamu...</p>
+      <button class="pink-button" onclick="showScreen('login')">Open Your Surprise 💕</button>
+    </section>
+
+    <section class="screen" id="login">
+      <div class="glass-card login-card">
+        <div class="big-heart">💖</div>
+        <h2>Before We Begin...</h2>
+        <p>Masukkan username dan password rahasiamu yaa.</p>
+        <form id="loginForm">
+          <label class="sr-only" for="username">Username</label>
+          <input id="username" type="text" placeholder="Username 💌" autocomplete="username" required>
+          <label class="sr-only" for="password">Password</label>
+          <input id="password" type="password" placeholder="Password 🔐" autocomplete="current-password" required>
+          <button class="pink-button full" type="submit">Unlock My Heart 💗</button>
+        </form>
+        <p id="errorMessage" class="error" role="status"></p>
+        <small>Hint: tanggal spesial kamu 😉</small>
+      </div>
+    </section>
+
+    <section class="screen" id="loading">
+      <div class="loading-heart">💗</div>
+      <h2>Preparing your surprise...</h2>
+      <p>Just for you, beautiful girl 🌷</p>
+    </section>
+
+    <section class="screen" id="main">
+      <div class="glass-card birthday-card">
+        <div class="sparkle">✨ 🎀 ✨</div>
+        <p class="eyebrow">TODAY IS YOUR SPECIAL DAY</p>
+        <h1>Happy Birthday!</h1>
+        <h2>Jihan Fauzi Rizqi S 💗</h2>
+        <p class="intro">Hari ini, semuanya tentang kamu.</p>
+
+        <div class="cake-area">
+          <div class="cake-container">
+            <div class="flames" id="flames" aria-label="Lilin menyala">
+              <span class="flame">🔥</span><span class="flame">🔥</span><span class="flame">🔥</span>
+            </div>
+            <div class="cake" aria-label="Kue ulang tahun">🎂</div>
+          </div>
+        </div>
+        <div class="candle-controls">
+          <button class="pink-button" id="blowButton" onclick="blowCandles()">🌬️ Tiup Lilinnya!</button>
+          <button class="pink-button secondary" id="micButton" onclick="startMicBlow()">🎙️ Tiup pakai mic</button>
+        </div>
+        <p class="cake-hint" id="cakeHint">Buat permohonan, lalu tiup lilinnya yaa 💗</p>
+
+        <div class="message">
+          <p>Happy birthday, Jihan! 💕 Semoga hari-harimu dipenuhi kebahagiaan, tawa, dan orang-orang yang tulus menyayangimu.</p>
+          <p>Semoga semua impianmu perlahan jadi nyata. Jangan lupa menyayangi diri sendiri dan tetap jadi Jihan yang istimewa.</p>
+          <p>You deserve beautiful things, today and always. 🌷</p>
+        </div>
+
+        <div class="button-stack">
+          <button class="pink-button" onclick="openGallery()">📸 Our Little Gallery</button>
+          <button class="pink-button" onclick="openGift()">🎁 Open Your Surprise</button>
+          <button class="pink-button secondary" onclick="openLetter()">💌 Open Your Love Letter</button>
+          <button class="pink-button secondary" onclick="openSecret()">🎀 Little Secrets</button>
+        </div>
+        <p class="signature">Made with love by Alif ♡</p>
+      </div>
+    </section>
+
+    <section class="screen" id="final">
+      <div class="final-sparkles">✨ 💗 ✨ 💕 ✨</div>
+      <div class="final-heart">💖</div>
+      <p class="eyebrow">ONE LAST THING...</p>
+      <h1>For You, Jihan</h1>
+      <div class="glass-card final-card">
+        <p>No matter how many birthdays come, I hope I can keep seeing you smile.</p>
+        <p>Semoga tahun ini membawa banyak hal baik untukmu. Terima kasih sudah menjadi dirimu sendiri.</p>
+        <p class="final-words">Happy birthday, Jihan. With love, Alif. 💗</p>
+        <button class="pink-button" onclick="showScreen('main')">Back to Your Surprise 🌷</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="popup" id="giftPopup" role="dialog" aria-modal="true" aria-labelledby="giftTitle">
+    <div class="popup-card">
+      <button class="close" aria-label="Tutup" onclick="closePopup('giftPopup')">×</button>
+      <div class="popup-emoji">🎁💝🎀</div>
+      <h2 id="giftTitle">A Little Gift for You!</h2>
+      <p>Jihan, kalau Alif bisa memberikan satu hal untukmu, Alif ingin kamu bisa melihat dirimu dari sudut pandang orang yang menyayangimu. Kamu akan tahu betapa berharganya dirimu. 🥹💗</p>
+      <p>Never forget how special you are! 🌷</p>
+      <button class="pink-button" onclick="closePopup('giftPopup')">Awww, Thank You! 💕</button>
+    </div>
+  </div>
+
+  <div class="popup" id="letterPopup" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+    <div class="popup-card letter-card">
+      <button class="close" aria-label="Tutup" onclick="closePopup('letterPopup')">×</button>
+      <div class="popup-emoji">💌🌷</div>
+      <h2 id="letterTitle">My Love Letter</h2>
+      <p class="letter-intro">A little message from Alif to Jihan 💗</p>
+      <div class="photo-frame">
+        <img src="foto.jpg" alt="Foto spesial Jihan" class="birthday-photo">
+        <p class="photo-caption">My favorite girl, Jihan 💗</p>
+      </div>
+      <div class="letter">
+        <p>Dear Jihan, my favorite person, 💕</p>
+        <p>Happy birthday, sayang. Di hari spesialmu ini, Alif ingin kamu tahu kalau kamu adalah seseorang yang sangat berharga. Semoga hari-harimu dipenuhi kebahagiaan, tawa, dan banyak alasan untuk tersenyum.</p>
+        <p>Semoga semua hal yang kamu impikan bisa tercapai satu per satu. Kalau suatu hari kamu merasa lelah, ingatlah bahwa kamu tidak harus selalu kuat dan sempurna. Kamu boleh istirahat, kamu boleh sedih, dan kamu tetap pantas disayangi.</p>
+        <p>Terima kasih sudah menjadi Jihan yang Alif kenal. Semoga tahun ini membawa lebih banyak kenangan indah, kesempatan baru, dan kebahagiaan untukmu.</p>
+        <p>Keep smiling, keep shining, and never stop being the wonderful person you are. I hope this little surprise makes you smile, even just a little. 🥹💗</p>
+        <p class="letter-sign">With love, always,<br><strong>Your Secret Admirer — Alif 💌</strong></p>
+      </div>
+      <button class="pink-button" onclick="closePopup('letterPopup'); showScreen('final')">Read One Last Message 💗</button>
+    </div>
+  </div>
+
+  <div class="popup" id="galleryPopup" role="dialog" aria-modal="true" aria-labelledby="galleryTitle">
+    <div class="popup-card gallery-card">
+      <button class="close" aria-label="Tutup" onclick="closePopup('galleryPopup')">×</button>
+      <div class="popup-emoji">📸🌸</div>
+      <h2 id="galleryTitle">Our Little Gallery</h2>
+      <p class="letter-intro">A few little moments to make you smile 💗</p>
+      <div class="gallery-grid">
+        <button class="gallery-photo" onclick="enlargePhoto('kenangan1.jpg', 'Kenangan pertama 💕')">
+          <img src="kenangan1.jpg" alt="Kenangan pertama" onerror="this.src='foto.jpg'">
+          <span>Little memory 1</span>
+        </button>
+        <button class="gallery-photo" onclick="enlargePhoto('kenangan2.jpg', 'Kenangan kedua 🌷')">
+          <img src="kenangan2.jpg" alt="Kenangan kedua" onerror="this.src='foto.jpg'">
+          <span>Little memory 2</span>
+        </button>
+        <button class="gallery-photo" onclick="enlargePhoto('kenangan3.jpg', 'Kenangan ketiga 💗')">
+          <img src="kenangan3.jpg" alt="Kenangan ketiga" onerror="this.src='foto.jpg'">
+          <span>Little memory 3</span>
+        </button>
+      </div>
+      <p class="gallery-note">Ganti gambar-gambar ini dengan foto kenangan kalian yaa.</p>
+      <button class="pink-button" onclick="closePopup('galleryPopup')">Back to Surprise 💌</button>
+    </div>
+  </div>
+
+  <div class="popup" id="photoPopup" role="dialog" aria-modal="true" aria-label="Foto kenangan">
+    <div class="popup-card enlarged-card">
+      <button class="close" aria-label="Tutup" onclick="closePopup('photoPopup')">×</button>
+      <img id="enlargedImage" class="enlarged-image" src="foto.jpg" alt="Foto kenangan">
+      <p id="enlargedCaption" class="photo-caption">A special memory 💗</p>
+    </div>
+  </div>
+
+  <div class="popup" id="secretPopup" role="dialog" aria-modal="true" aria-labelledby="secretTitle">
+    <div class="popup-card">
+      <button class="close" aria-label="Tutup" onclick="closePopup('secretPopup')">×</button>
+      <div class="popup-emoji">🎀💗</div>
+      <h2 id="secretTitle">Little Secrets</h2>
+      <p class="letter-intro">Pilih satu, ada pesan kecil buat kamu.</p>
+      <div class="secret-buttons">
+        <button class="pink-button secondary" onclick="showSecret(0)">Alasan kamu istimewa 💖</button>
+        <button class="pink-button secondary" onclick="showSecret(1)">Hal yang aku harapkan 🌷</button>
+        <button class="pink-button secondary" onclick="showSecret(2)">Pesan saat kamu lelah 🫶</button>
+      </div>
+      <div id="secretMessage" class="secret-message">Pilih salah satu pesan di atas yaa 💌</div>
+      <button class="pink-button" onclick="closePopup('secretPopup')">Keep This Message 💗</button>
+    </div>
+  </div>
+
+  <footer>Made with 💗 by Alif, especially for Jihan</footer>
+  <script src="script.js"></script>
+</body>
+</html>
